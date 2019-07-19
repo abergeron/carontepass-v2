@@ -15,13 +15,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Telegram',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('chatid', models.DecimalField(decimal_places=0, max_digits=12)),
-            ],
-        ),
         migrations.RemoveField(
             model_name='user',
             name='group',
@@ -46,10 +39,5 @@ class Migration(migrations.Migration):
         ),
         migrations.DeleteModel(
             name='User',
-        ),
-        migrations.AddField(
-            model_name='telegram',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
     ]
