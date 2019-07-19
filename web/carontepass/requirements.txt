@@ -1,10 +1,9 @@
-Django
-djangorestframework
-urllib3
-pyTelegramBotAPI
-django-admin-bootstrapped
-django-extensions
-django-bootstrap3
+Django==1.8.19
+django-admin-bootstrapped==2.5.7
+django-bootstrap3==9.1.0
+django-extensions==2.1.0
+djangorestframework==3.6.4
 django-graphos
+urllib3
 ndg-httpsclient
 PySocks
