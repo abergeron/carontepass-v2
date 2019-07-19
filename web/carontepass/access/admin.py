@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from access.models import Message, Payment, Device, Log, Telegram
+from access.models import Payment, Device, Log
 
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User, Group
@@ -25,14 +25,6 @@ class PaymentAdmin(admin.ModelAdmin):
   list_display = ('user', 'month', 'year', 'f_payment', 'amount') 
   search_fields = ('user', 'month', 'year') 
   list_filter = ('month',)
-  
-class MessageAdmin(admin.ModelAdmin): 
-  list_display = ('rol', 'text')
-  list_filter = ('rol',)
-  
-class TelegramAdmin(admin.ModelAdmin): 
-  list_display = ('user', 'chatid') 
-  search_fields = ('user', 'chatid') 
   
 def roles(self):
     #short_name = unicode # function to get group name
@@ -73,8 +65,6 @@ admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)
 admin.site.register(Group, GroupAdmin)
-admin.site.register(Message, MessageAdmin)
 admin.site.register(Payment, PaymentAdmin)
 admin.site.register(Device, DeviceAdmin)
 admin.site.register(Log, LogAdmin)
-admin.site.register(Telegram, TelegramAdmin)

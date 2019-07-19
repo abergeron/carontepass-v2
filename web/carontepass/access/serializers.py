@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from carontepass.settings_local import VALUE_PAYMENT_TRUE, MAX_GRANTED_DAYS
-from .models import Device, Payment, Log, Message
+from .models import Device, Payment, Log
 import datetime
 from django.contrib.auth.models import User
 
@@ -28,7 +28,6 @@ class DeviceResultSerializer(serializers.ModelSerializer):
             if  Payment.objects.filter(user=Device.user, month=month_actual)[0].amount >= VALUE_PAYMENT_TRUE:
                 
                 Log.checkentryLog(Device)
-                Message.message_detect_tag(Device)
                 return True;
         
         
@@ -40,12 +39,8 @@ class DeviceResultSerializer(serializers.ModelSerializer):
             if datetime.datetime.now().day <= MAX_GRANTED_DAYS:
                 
                 Log.checkentryLog(Device)
-                Message.message_detect_tag(Device)
-                
                 return True;
                 
     class Meta:
             model = Device
             fields = ('id', 'user', 'kind', 'code', 'result')
-            
-    

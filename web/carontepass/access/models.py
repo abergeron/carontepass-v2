@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
-from carontepass.settings_local import TOKEN_IBOARDBOT, DOMOTICZ_LOCALIP, DOMOTICZ_IDX, DOMOTICZ_USUER, DOMOTICZ_PASS
 import urllib3
 
 
@@ -55,14 +53,6 @@ class Log(models.Model):
    
     @staticmethod   
     def checkentryLog(Device):
-
-        def domoticz_armed(armed='On'):
-            # Domoticz armed Security
-            http = urllib3.PoolManager()
-            url = 'http://'+DOMOTICZ_LOCALIP+'/json.htm?type=command&param=switchlight&idx='+DOMOTICZ_IDX+'&switchcmd='
-            headers = urllib3.util.make_headers(basic_auth=DOMOTICZ_USUER+':'+DOMOTICZ_PASS)
-            r = http.request('GET', url+armed, headers=headers)
- 
         date = datetime.datetime.now()
 
         log_obj = Log.objects.filter(user=Device.user).last()
@@ -84,16 +74,6 @@ class Log(models.Model):
      
         log_user_in_end = len(Log.objects.filter(user_in=True).all())
         
-        
-        if(log_user_in_initial == 0 and log_user_in_end == 1):
-            # Site domoticz state On
-            domoticz_armed('On')
-            
-        elif(log_user_in_initial == 1 and log_user_in_end == 0):
-            # Site domoticz state Off
-            domoticz_armed('Off')
-           
-            
     @staticmethod   
     def listUsersInside():
         

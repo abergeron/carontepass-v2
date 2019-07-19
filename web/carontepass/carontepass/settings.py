@@ -79,9 +79,9 @@ DATABASES = {
 
 # Internationalization
 
-LANGUAGE_CODE = 'es-ES'
+LANGUAGE_CODE = 'fr-CA'
 
-TIME_ZONE = 'Atlantic/Canary'
+TIME_ZONE = 'America/Montreal'
 
 USE_I18N = True
 
