@@ -66,6 +66,8 @@ void setup() {
   delay(10);
   SPI.begin();           // Init SPI bus
   mfrc522.PCD_Init();    // Init MFRC522
+
+  mfrc522.PCD_SetAntennaGain(mfrc522.RXGAIN_MAX);
   
   Serial.println();
   Serial.print("Connecting to ");
